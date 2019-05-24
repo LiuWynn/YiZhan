@@ -177,6 +177,7 @@ return [
 
         'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
         Barryvdh\Cors\ServiceProvider::class,
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
     ],
 
     /*

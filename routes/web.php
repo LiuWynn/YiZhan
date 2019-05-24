@@ -35,5 +35,5 @@ Route::namespace('Home')->group(function () {
 // 后端路由
 Route::namespace('Admin')->prefix('api/admin')->group(function () {
 //    Route::get('/login-handle', 'LoginController@loginHandle');
-    dd(\App\Model\Teacher::all());
+    Route::post('testpost', 'LoginController@testpost');
 });
