@@ -29,12 +29,17 @@ Route::post('/testapi', function () {
     dd(bcrypt(123456));
 });
 
+
+/*
+ * 路由前会自动加上 /api/
+ * 如 'login' 路由 的 api 为 /api/auth/login
+ * */
 Route::group([
     'namespace' => 'Admin'
-], function ($router) {
-    Route::post('login', 'AuthController@login');
+], function () {
+    // 登录验证
+    Route::post('auth/login', 'AuthController@login');
+    Route::post('me', 'AuthController@me');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
-
 });
