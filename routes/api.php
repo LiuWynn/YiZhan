@@ -32,13 +32,16 @@ Route::post('/testapi', function () {
 
 /*
  * 路由前会自动加上 /api/
- * 如 'login' 路由 的 api 为 /api/auth/login
+ * 如 'login' 路由 的 api 为 /api/admin/login
  * */
 Route::group([
-    'namespace' => 'Admin'
+    'namespace' => 'Admin',
+    'prefix' => 'admin'
 ], function () {
     // 登录验证
-    Route::post('auth/login', 'AuthController@login');
+    Route::post('login', 'AuthController@login');
+    // 用户信息
+    Route::post('user-info', 'AuthController@userInfo');
     Route::post('me', 'AuthController@me');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');

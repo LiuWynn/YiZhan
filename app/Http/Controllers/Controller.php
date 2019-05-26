@@ -53,7 +53,7 @@ class Controller extends BaseController
                 'msg' => $msg
             ]
         );
-        $response['result']['access_token'] = $token;
+        $response['result']['token'] = $token;
         return response()->json($response);
     }
 }
