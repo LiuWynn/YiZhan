@@ -56,6 +56,11 @@ class AuthController extends Controller
         return $this->respondWithToken(true, null, $token);
     }
 
+    /**
+     * Get user info and user's permissions
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function userInfo()
     {
         $user = auth('api')->user();
@@ -66,16 +71,6 @@ class AuthController extends Controller
             'permissions' => $this->kitsRepo->dispatchPermissions($user->roles)
         );
         return $this->respond(true, $result);
-    }
-
-    /**
-     * Get the authenticated User.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function me()
-    {
-        return response()->json(auth('api')->user());
     }
 
     /**
@@ -92,11 +87,11 @@ class AuthController extends Controller
     /**
      * Refresh a token.
      * 刷新token，如果开启黑名单，以前的token便会失效。
-     * 值得注意的是用上面的getToken再获取一次Token并不算做刷新，两次获得的Token是并行的，即两个都可用。
      * @return \Illuminate\Http\JsonResponse
      */
-    public function refresh()
+    public function refreshToken()
     {
-        return auth('api')->refresh();
+        $token = auth('api')->refresh();
+        return $this->respondWithToken(true, null, $token);
     }
 }

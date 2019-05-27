@@ -42,7 +42,13 @@ Route::group([
     Route::post('login', 'AuthController@login');
     // 用户信息
     Route::post('user-info', 'AuthController@userInfo');
-    Route::post('me', 'AuthController@me');
+    // 刷新token
+    Route::post('refresh-token', 'AuthController@refreshToken');
+    // 获取公司信息
+    Route::post('company/info', 'CompanyController@companyInfo');
+    // 更新公司信息
+    Route::put('company/edit-info', 'CompanyController@editInfo');
+
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 });
