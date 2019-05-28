@@ -52,6 +52,10 @@ Route::group([
     Route::post('company/intro', 'CompanyController@intro');
     // 更新公司简介
     Route::post('company/edit-intro', 'CompanyController@editIntro');
+    // 获取招班动态
+    Route::post('admission/info', 'AdmissionController@info');
+    // 更新招办动态
+    Route::post('admission/edit-info', 'AdmissionController@editInfo');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 });
