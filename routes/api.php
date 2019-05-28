@@ -48,7 +48,10 @@ Route::group([
     Route::post('company/info', 'CompanyController@companyInfo');
     // 更新公司信息
     Route::post('company/edit-info', 'CompanyController@editInfo');
-
+    // 获取公司简介
+    Route::post('company/intro', 'CompanyController@intro');
+    // 更新公司简介
+    Route::post('company/edit-intro', 'CompanyController@editIntro');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 });

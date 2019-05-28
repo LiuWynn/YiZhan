@@ -21,10 +21,9 @@ class AuthController extends Controller
     private $kitsRepo;
 
     /**
-     * Create a new AuthController instance.
-     * 要求附带email和password（数据来源users表）
-     *
-     * @return void
+     * AuthController constructor.
+     * @param TeacherRepo $teacherRepo
+     * @param KitsRepo $kitsRepo
      */
     public function __construct(TeacherRepo $teacherRepo, KitsRepo $kitsRepo)
     {
