@@ -14,8 +14,27 @@ interface iKits
 {
     /**
      * 根据用户角色分配权限
+     *
      * @param string $roles
      * @return mixed
      */
     function dispatchPermissions($roles);
+
+    /**
+     * Byte转化成MB
+     * @param $Byte
+     * @return mixed
+     */
+    function toMB($Byte);
+
+    /**
+     * 处理上传的图片
+     *
+     * @param $savePath
+     * @param $filePath
+     * @param $img
+     * @param $type
+     * @return mixed
+     */
+    function uploadImg($savePath, $filePath, $img, $type);
 }

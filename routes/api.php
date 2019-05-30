@@ -47,15 +47,23 @@ Route::group([
     // 获取公司信息
     Route::post('company/info', 'CompanyController@companyInfo');
     // 更新公司信息
-    Route::post('company/edit-info', 'CompanyController@editInfo');
-    // 获取公司简介
+    Route::put('company/edit-info', 'CompanyController@editInfo');
+    // 获取公司介绍
     Route::post('company/intro', 'CompanyController@intro');
-    // 更新公司简介
-    Route::post('company/edit-intro', 'CompanyController@editIntro');
+    // 更新公司介绍
+    Route::put('company/edit-intro', 'CompanyController@editIntro');
     // 获取招班动态
     Route::post('admission/info', 'AdmissionController@info');
     // 更新招办动态
-    Route::post('admission/edit-info', 'AdmissionController@editInfo');
+    Route::put('admission/edit-info', 'AdmissionController@editInfo');
+    // 获取添加教师页配置信息
+    Route::get('teacher/limit', 'TeacherController@limit');
+    // 上传教师头像
+    Route::post('teacher/upload-avatar', 'FileController@uploadAvatar');
+    // 上传教师作品
+    Route::post('teacher/upload-work', 'FileController@uploadWork');
+    // 添加教师
+    Route::post('teacher/add-teacher', 'TeacherController@create');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 });
