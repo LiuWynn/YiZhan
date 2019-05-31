@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Validator;
 
 class TeacherRepo implements iTeacher
 {
+    /**
+     * @var Teacher
+     */
     private $teacher;
 
     /**
@@ -26,7 +29,6 @@ class TeacherRepo implements iTeacher
     {
         $this->teacher = $teacher;
     }
-
 
     function validateLogin($data)
     {
@@ -41,5 +43,25 @@ class TeacherRepo implements iTeacher
         );
         return Validator::make($data, $rules, $messages);
     }
+
+    function insert($data)
+    {
+        return $this->teacher->insert($data);
+    }
+
+    function getTeacherList($keyword = null)
+    {
+        return $this->teacher
+            ->select('tid', 'name', 'email', 'phone', 'qq', 'weixin', 'job', 'roles')
+            ->get();
+    }
+
+    function del($id)
+    {
+        return $this->teacher
+            ->where('tid', $id)
+            ->delete();
+    }
+
 
 }

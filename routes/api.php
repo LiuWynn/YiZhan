@@ -64,6 +64,10 @@ Route::group([
     Route::post('teacher/upload-work', 'FileController@uploadWork');
     // 添加教师
     Route::post('teacher/add-teacher', 'TeacherController@create');
+    // 获取教师列表
+    Route::post('teacher/list', 'TeacherController@getList');
+    // 删除教师
+    Route::delete('teacher/del-teacher', 'TeacherController@delTeacher');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 });

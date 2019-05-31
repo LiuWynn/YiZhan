@@ -18,4 +18,7 @@ final class ErrorCode extends ClassEnumerator
     const SIZE_EXCEED_LIMIT = 10002; // 文件大小超出限制
     const FILE_VALID_FAIL = 10003; // 上传文件不合法
     const FILE_READ_FAIL = 10004; // 配置文件读取失败
+    const SQL_INSERT_ERR = 10005; // 数据插入失败
+    const SQL_SELECT_ERR = 10006; // 数据查询失败
+    const SQL_DELETE_ERR = 10007; // 数据删除失败
 }
