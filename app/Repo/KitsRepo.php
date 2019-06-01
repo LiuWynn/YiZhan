@@ -76,7 +76,7 @@ class KitsRepo implements iKits
         return round($Byte / (1024 * 1024), 2);
     }
 
-    function uploadImg($savePath, $filePath, $img, $type)
+    function uploadImg($savePath, $filePath, $img, $type, $role)
     {
         // 生成唯一的文件名
         $ext = $img->getClientOriginalExtension();
@@ -84,9 +84,9 @@ class KitsRepo implements iKits
         // 移动文件到指定目录
         $img->move($savePath . DIRECTORY_SEPARATOR . $filePath, $fileName);
         if ($type == 'avatar')
-            $url = url('avatars/' . $filePath . '/' . $fileName);
+            $url = url($role . '/avatars/' . $filePath . '/' . $fileName);
         else
-            $url = url('works/' . $filePath . '/' . $fileName);
+            $url = url($role . '/works/' . $filePath . '/' . $fileName);
         return array('name' => $img->getClientOriginalName(), 'url' => $url);
     }
 

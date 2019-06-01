@@ -34,7 +34,8 @@ interface iKits
      * @param $filePath
      * @param $img
      * @param $type
+     * @param $role
      * @return mixed
      */
-    function uploadImg($savePath, $filePath, $img, $type);
+    function uploadImg($savePath, $filePath, $img, $type, $role);
 }

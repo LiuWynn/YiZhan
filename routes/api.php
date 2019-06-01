@@ -59,9 +59,9 @@ Route::group([
     // 获取添加教师页配置信息
     Route::get('teacher/limit', 'TeacherController@limit');
     // 上传教师头像
-    Route::post('teacher/upload-avatar', 'FileController@uploadAvatar');
+    Route::post('teacher/upload-avatar', 'FileController@uploadTeacherAvatar');
     // 上传教师作品
-    Route::post('teacher/upload-work', 'FileController@uploadWork');
+    Route::post('teacher/upload-work', 'FileController@uploadTeacherWork');
     // 添加教师
     Route::post('teacher/add-teacher', 'TeacherController@create');
     // 获取教师列表
@@ -72,6 +72,12 @@ Route::group([
     Route::get('teacher/get/{id}', 'TeacherController@getTeacher');
     // 根据 id 修改教师信息
     Route::put('teacher/edit', 'TeacherController@editTeacher');
+    // 添加校友
+    Route::post('student/add-student', 'StudentController@create');
+    // 上传学生头像
+    Route::post('student/upload-avatar', 'FileController@uploadStudentAvatar');
+    // 上传学生作品集
+    Route::post('student/upload-work', 'FileController@uploadStudentWork');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 });
