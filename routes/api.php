@@ -68,6 +68,10 @@ Route::group([
     Route::post('teacher/list', 'TeacherController@getList');
     // 删除教师
     Route::delete('teacher/del-teacher', 'TeacherController@delTeacher');
+    // 根据 id 获取教师信息
+    Route::get('teacher/get/{id}', 'TeacherController@getTeacher');
+    // 根据 id 修改教师信息
+    Route::put('teacher/edit', 'TeacherController@editTeacher');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 });

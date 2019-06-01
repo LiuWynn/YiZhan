@@ -44,7 +44,7 @@ class TeacherController extends Controller
             $data['password'] = bcrypt(123456);
         $data['phone'] = $params['phone'];
         $data['qq'] = $params['qq'];
-        $data['weixin'] = $params['wechat'];
+        $data['weixin'] = $params['weixin'];
         $data['job'] = $params['job'];
         if (count($params['roles']) == 1) // 拼接roles
             $data['roles'] = $params['roles'][0];
@@ -68,14 +68,11 @@ class TeacherController extends Controller
                 ErrorCode::SQL_INSERT_ERR, '添加失败，请稍后重试');
     }
 
-    public function getList()
+    public function getList(Request $request)
     {
-        $result = $this->teacherRepo->getTeacherList();
-//        foreach ($data as $key => $role) {
-//            $data[$key]['roles'] = explode(',', $role['roles']);
-//        }
-        if ($result)
-            return $this->respond(true, $result);
+        $keywords = $request->all();
+        if ($result = $this->teacherRepo->getTeacherList($keywords))
+            return $this->respond(true, ['data' => $result, 'total' => count($result)]);
         else
             return $this->respond(false, null,
                 ErrorCode::SQL_SELECT_ERR, '暂无数据');
@@ -89,5 +86,46 @@ class TeacherController extends Controller
         else
             return $this->respond(false, null,
                 ErrorCode::SQL_DELETE_ERR, '删除失败，请稍后重试');
+    }
+
+    public function getTeacher($id) {
+        if ($result = $this->teacherRepo->get($id))
+            return $this->respond(true, $result);
+        else
+            return $this->respond(false, null, ErrorCode::SQL_SELECT_ERR, '查无此人信息，请稍后重试');
+    }
+
+    public function editTeacher(Request $request) {
+        $tid = $request->get('tid');
+        $params = $request->except('id');
+        // 组合插入数据
+        $data['name'] = $params['name'];
+        $data['email'] = $params['email'];
+        if (isset($params['password'])) // 如果没有设置密码，则不修改密码
+            $data['password'] = bcrypt($params['password']);
+        $data['phone'] = $params['phone'];
+        $data['qq'] = $params['qq'];
+        $data['weixin'] = $params['weixin'];
+        $data['job'] = $params['job'];
+        if (count($params['roles']) == 1) // 拼接roles
+            $data['roles'] = $params['roles'][0];
+        else
+            $data['roles'] = $params['roles'][0] . ',' . $params['roles'][1];
+        $data['project'] = $params['project'];
+        $data['intro'] = $params['intro'];
+        $data['avatar'] = $params['avatar'];
+
+        $works = $params['works'];
+        for ($i = 0; $i < count($works); $i++) {
+            if ($i == 0)
+                $data['works'][$i] = $works[$i];
+            $data['works'][$i] = $works[$i];
+        }
+        $data['works'] = json_encode($data['works']);
+        if ($this->teacherRepo->edit($tid, $data))
+            return $this->respond(true, ['message' => '数据更新成功']);
+        else
+            return $this->respond(false, null,
+                ErrorCode::SQL_UPDATE_ERR, '数据更新失败，请稍后重试');
     }
 }

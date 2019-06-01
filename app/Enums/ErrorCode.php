@@ -21,4 +21,5 @@ final class ErrorCode extends ClassEnumerator
     const SQL_INSERT_ERR = 10005; // 数据插入失败
     const SQL_SELECT_ERR = 10006; // 数据查询失败
     const SQL_DELETE_ERR = 10007; // 数据删除失败
+    const SQL_UPDATE_ERR = 10008; // 数据更新失败
 }

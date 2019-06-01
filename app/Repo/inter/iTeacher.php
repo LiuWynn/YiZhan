@@ -27,10 +27,10 @@ interface iTeacher
 
     /**
      * 查找满足条件的教师列表
-     * @param null $keyword
+     * @param null $keywords
      * @return mixed
      */
-    function getTeacherList($keyword = null);
+    function getTeacherList($keywords = null);
 
     /**
      * 删除教师
@@ -38,4 +38,19 @@ interface iTeacher
      * @return mixed
      */
     function del($id);
+
+    /**
+     * 根据 id 查找教师
+     * @param $id
+     * @return mixed
+     */
+    function get($id);
+
+    /**
+     * 根据 id 修改教师
+     * @param $id
+     * @param $data
+     * @return mixed
+     */
+    function edit($id, $data);
 }

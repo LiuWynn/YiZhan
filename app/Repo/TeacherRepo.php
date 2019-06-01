@@ -49,9 +49,18 @@ class TeacherRepo implements iTeacher
         return $this->teacher->insert($data);
     }
 
-    function getTeacherList($keyword = null)
+    function getTeacherList($keywords = null)
     {
+
         return $this->teacher
+            ->where(function($query) use ($keywords) {
+                if (isset($keywords['name']))
+                    $query->where('name', 'like', '%'.$keywords['name'].'%');
+                if (isset($keywords['email']))
+                    $query->where('email', $keywords['email']);
+                if (isset($keywords['phone']))
+                    $query->where('phone', $keywords['phone']);
+            })
             ->select('tid', 'name', 'email', 'phone', 'qq', 'weixin', 'job', 'roles')
             ->get();
     }
@@ -61,6 +70,22 @@ class TeacherRepo implements iTeacher
         return $this->teacher
             ->where('tid', $id)
             ->delete();
+    }
+
+    function get($id)
+    {
+        return $this->teacher
+            ->where('tid', $id)
+            ->select('tid', 'name', 'email', 'phone', 'qq', 'weixin',
+                'job', 'intro', 'project', 'avatar', 'works', 'roles')
+            ->first();
+    }
+
+    function edit($id, $data)
+    {
+        return $this->teacher
+            ->where('tid', $id)
+            ->update($data);
     }
 
 
