@@ -17,4 +17,11 @@ interface iStudent
      * @return mixed
      */
     function insert($data);
+
+    /**
+     * 获取学生列表
+     * @param $keywords
+     * @return mixed
+     */
+    function getStudentList($keywords = null);
 }

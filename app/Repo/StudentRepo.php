@@ -29,4 +29,21 @@ class StudentRepo implements iStudent
         return $this->student->insert($data);
     }
 
+    function getStudentList($keywords = null)
+    {
+        return $this->student
+//            ->where(function($query) use ($keywords) {
+//                if (isset($keywords['name']))
+//                    $query->where('name', 'like', '%'.$keywords['name'].'%');
+//                if (isset($keywords['email']))
+//                    $query->where('email', $keywords['email']);
+//                if (isset($keywords['phone']))
+//                    $query->where('phone', $keywords['phone']);
+//            })
+            ->select('sid', 'name', 'education', 'profession',
+                'salary', 'position', 'company', 'major')
+            ->get();
+    }
+
+
 }

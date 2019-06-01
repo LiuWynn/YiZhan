@@ -78,6 +78,8 @@ Route::group([
     Route::post('student/upload-avatar', 'FileController@uploadStudentAvatar');
     // 上传学生作品集
     Route::post('student/upload-work', 'FileController@uploadStudentWork');
+    // 获取学生列表
+    Route::post('student/list', 'StudentController@getList');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 });

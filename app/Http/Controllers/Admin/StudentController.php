@@ -50,4 +50,13 @@ class StudentController extends Controller
             return $this->respond(false, null,
                 ErrorCode::SQL_INSERT_ERR, '添加失败，请稍后重试');
     }
+
+    public function getList(Request $request) {
+        $keywords = $request->all();
+        if ($result = $this->studentRepo->getStudentList($keywords))
+            return $this->respond(true, ['data' => $result, 'total' => count($result)]);
+        else
+            return $this->respond(false, null,
+                ErrorCode::SQL_SELECT_ERR, '暂无数据');
+    }
 }
