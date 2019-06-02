@@ -32,14 +32,14 @@ class StudentRepo implements iStudent
     function getStudentList($keywords = null)
     {
         return $this->student
-//            ->where(function($query) use ($keywords) {
-//                if (isset($keywords['name']))
-//                    $query->where('name', 'like', '%'.$keywords['name'].'%');
-//                if (isset($keywords['email']))
-//                    $query->where('email', $keywords['email']);
-//                if (isset($keywords['phone']))
-//                    $query->where('phone', $keywords['phone']);
-//            })
+            ->where(function ($query) use ($keywords) {
+                if (isset($keywords['name']))
+                    $query->where('name', 'like', '%' . $keywords['name'] . '%');
+                if (isset($keywords['company']))
+                    $query->where('company', 'like', '%' . $keywords['company'] . '%');
+                if (isset($keywords['major']))
+                    $query->where('major', 'like', '%' . $keywords['major'] . '%');
+            })
             ->select('sid', 'name', 'education', 'profession',
                 'salary', 'position', 'company', 'major')
             ->get();
