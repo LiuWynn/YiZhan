@@ -92,12 +92,13 @@ class TeacherController extends Controller
         if ($result = $this->teacherRepo->get($id))
             return $this->respond(true, $result);
         else
-            return $this->respond(false, null, ErrorCode::SQL_SELECT_ERR, '查无此人信息，请稍后重试');
+            return $this->respond(false, null,
+                ErrorCode::SQL_SELECT_ERR, '查无此人信息，请稍后重试');
     }
 
     public function editTeacher(Request $request) {
         $tid = $request->get('tid');
-        $params = $request->except('id');
+        $params = $request->except('tid');
         // 组合插入数据
         $data['name'] = $params['name'];
         $data['email'] = $params['email'];

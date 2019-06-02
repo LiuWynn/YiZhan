@@ -80,6 +80,12 @@ Route::group([
     Route::post('student/upload-work', 'FileController@uploadStudentWork');
     // 获取学生列表
     Route::post('student/list', 'StudentController@getList');
+    // 根据 id 获取学员信息
+    Route::get('student/get/{id}', 'StudentController@getStudent');
+    // 根据 id 修改学员信息
+    Route::put('student/edit', 'StudentController@editStudent');
+    // 删除学员
+    Route::delete('student/del-student', 'StudentController@delStudent');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 });

@@ -1,8 +1,10 @@
 /node_modules
 /public/hot
 /public/storage
-/public/avatars
-/public/works
+/public/student/avatars
+/public/student/works
+/public/teacher/avatars
+/public/teacher/works
 /storage/*.key
 /vendor
 /.idea

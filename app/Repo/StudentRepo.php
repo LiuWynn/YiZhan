@@ -45,5 +45,28 @@ class StudentRepo implements iStudent
             ->get();
     }
 
+    function get($id)
+    {
+        return $this->student
+            ->where('sid', $id)
+            ->select('sid', 'name', 'education', 'profession', 'salary',
+                'position', 'company', 'major', 'intro', 'avatar', 'works')
+            ->first();
+    }
+
+    function edit($sid, $data)
+    {
+        return $this->student
+            ->where('sid', $sid)
+            ->update($data);
+    }
+
+    function del($sid)
+    {
+        return $this->student
+            ->where('sid', $sid)
+            ->delete();
+    }
+
 
 }
