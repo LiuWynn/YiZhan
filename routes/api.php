@@ -86,6 +86,18 @@ Route::group([
     Route::put('student/edit', 'StudentController@editStudent');
     // 删除学员
     Route::delete('student/del-student', 'StudentController@delStudent');
+    // 获取报名者列表
+    Route::post('sign/list', 'SignController@getList');
+    // 删除报名者
+    Route::delete('sign/del-sign','SignController@delSign');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
+});
+
+Route::group([
+    'namespace' => 'Home',
+    'prefix' => 'home'
+], function () {
+    // 添加保名信息
+    Route::post('sign/add-sign', 'SignController@create');
 });
