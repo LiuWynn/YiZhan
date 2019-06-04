@@ -5,6 +5,7 @@
 /public/student/works
 /public/teacher/avatars
 /public/teacher/works
+/public/site
 /storage/*.key
 /vendor
 /.idea

@@ -31,6 +31,7 @@ Route::post('/testapi', function () {
 
 
 /*
+ * 后台路由
  * 路由前会自动加上 /api/
  * 如 'login' 路由 的 api 为 /api/admin/login
  * */
@@ -90,10 +91,19 @@ Route::group([
     Route::post('sign/list', 'SignController@getList');
     // 删除报名者
     Route::delete('sign/del-sign','SignController@delSign');
+    // 获取站点首页图片等信息
+    Route::post('site/get', 'SiteController@get');
+    // 上传站点首页轮播图
+    Route::post('site/upload-pics', 'FileController@uploadHomePic');
+    // 修改站点首页轮播图
+    Route::put('site/set', 'SiteController@set');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 });
 
+/*
+ * 前台路由
+ * */
 Route::group([
     'namespace' => 'Home',
     'prefix' => 'home'

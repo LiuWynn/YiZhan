@@ -83,10 +83,12 @@ class KitsRepo implements iKits
         $fileName = uniqid() . '.' . $ext;
         // 移动文件到指定目录
         $img->move($savePath . DIRECTORY_SEPARATOR . $filePath, $fileName);
-        if ($type == 'avatar')
+        if ($type == 'avatar') // 上传头像
             $url = url($role . '/avatars/' . $filePath . '/' . $fileName);
-        else
+        else if ($type == 'work') // 上传作品
             $url = url($role . '/works/' . $filePath . '/' . $fileName);
+        else // 上传首页图片
+            $url = url('site/' . $filePath . '/' . $fileName);
         return array('name' => $img->getClientOriginalName(), 'url' => $url);
     }
 

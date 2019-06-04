@@ -53,7 +53,7 @@ class FileController extends Controller
             if ($toMB <= $work_max_size) {
                 $savePath = public_path('teacher/works');
                 $filePath = date('Ymd');
-                $result = $this->kitsRepo->uploadImg($savePath, $filePath, $work, 'works', 'teacher');
+                $result = $this->kitsRepo->uploadImg($savePath, $filePath, $work, 'work', 'teacher');
                 return $this->respond(true, $result);
             } else {
                 return $this->respond(false, null,
@@ -97,7 +97,7 @@ class FileController extends Controller
             if ($toMB <= $work_max_size) {
                 $savePath = public_path('student/works');
                 $filePath = date('Ymd');
-                $result = $this->kitsRepo->uploadImg($savePath, $filePath, $work, 'works', 'student');
+                $result = $this->kitsRepo->uploadImg($savePath, $filePath, $work, 'work', 'student');
                 return $this->respond(true, $result);
             } else {
                 return $this->respond(false, null,
@@ -106,6 +106,28 @@ class FileController extends Controller
         } else {
             return $this->respond(false, null,
                 ErrorCode::FILE_VALID_FAIL, '作品上传不合法');
+        }
+    }
+
+    public function uploadHomePic(Request $request)
+    {
+        $pic = $request->file('pic');
+        if ($pic->isValid()) {
+            $size = $pic->getClientSize();
+            $toMB = $this->kitsRepo->toMB($size);
+            $pic_max_size = config('image.HOME_PIC_MAX_SIZE');
+            if ($toMB <= $pic_max_size) {
+                $savePath = public_path('site');
+                $filePath = date('Ymd');
+                $result = $this->kitsRepo->uploadImg($savePath, $filePath, $pic, 'pic_home', null);
+                return $this->respond(true, $result);
+            } else {
+                return $this->respond(false, null,
+                    ErrorCode::SIZE_EXCEED_LIMIT, '图片大小超过限制');
+            }
+        } else {
+            return $this->respond(false, null,
+                ErrorCode::FILE_VALID_FAIL, '图片上传不合法');
         }
     }
 }
