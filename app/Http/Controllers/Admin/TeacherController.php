@@ -129,4 +129,5 @@ class TeacherController extends Controller
             return $this->respond(false, null,
                 ErrorCode::SQL_UPDATE_ERR, '数据更新失败，请稍后重试');
     }
+
 }

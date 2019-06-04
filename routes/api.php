@@ -45,6 +45,8 @@ Route::group([
     Route::post('user-info', 'AuthController@userInfo');
     // 刷新token
     Route::post('refresh-token', 'AuthController@refreshToken');
+    // 修改密码
+    Route::put('edit-password', 'AuthController@editPassword');
     // 获取公司信息
     Route::post('company/info', 'CompanyController@companyInfo');
     // 更新公司信息
@@ -97,6 +99,10 @@ Route::group([
     Route::post('site/upload-pics', 'FileController@uploadHomePic');
     // 修改站点首页轮播图
     Route::put('site/set', 'SiteController@set');
+    // 获取站点配置信息
+    Route::post('site/conf', 'SiteController@getConf');
+    // 修改站点配置信息
+    Route::put('site/edit-conf', 'SiteController@editConf');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 });

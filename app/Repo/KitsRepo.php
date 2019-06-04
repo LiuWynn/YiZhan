@@ -54,6 +54,9 @@ class KitsRepo implements iKits
             ], [
                 'path' => '/admin/site/config',  // 站点配置信息
                 'permission' => ['add', 'modify']
+            ], [
+                'path' => '/admin/user/password', // 修改密码
+                'permission' => ['modify']
             ]);
         } else {  // 用户不是管理员
             $permissions = array([
@@ -66,6 +69,9 @@ class KitsRepo implements iKits
                 'path' => '/admin/admission'  // 招班动态
             ], [
                 'path' => '/admin/sign/list'  // 保名人列表
+            ], [
+                'path' => '/admin/user/password', // 修改密码
+                'permission' => ['modify']
             ]);
         }
         return $permissions;

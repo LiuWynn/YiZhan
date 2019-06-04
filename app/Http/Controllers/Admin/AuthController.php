@@ -93,4 +93,28 @@ class AuthController extends Controller
         $token = auth('api')->refresh();
         return $this->respondWithToken(true, null, $token);
     }
+
+
+    public function editPassword(Request $request)
+    {
+        $tid = $request->get('tid');
+        $oldPass = $request->get('oldPass');
+        $newPass = $request->get('newPass');
+        $checkPass = $request->get('checkPass');
+        $credentials = ['tid' => $tid, 'password' => $oldPass];
+
+        if ($newPass != $checkPass) {
+            return $this->respond(false, null,
+                ErrorCode::UNAUTHORIZED, '两次输入密码不一致');
+        }
+        if (!$token = auth('api')->attempt($credentials)) {  // 用户登录验证失败
+            return $this->respond(false, null,
+                ErrorCode::UNAUTHORIZED, '密码错误');
+        }
+        if ($this->teacherRepo->edit($tid, ['password' => bcrypt($newPass)]))
+            return $this->respond(true, ['message' => '密码修改成功，请重新登录']);
+        else
+            return $this->respond(false, null,
+                ErrorCode::UPDATE_FAIL, '密码修改失败');
+    }
 }
