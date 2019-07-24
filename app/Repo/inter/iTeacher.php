@@ -53,4 +53,11 @@ interface iTeacher
      * @return mixed
      */
     function edit($id, $data);
+
+    /**
+     * 统计 $role 的总数
+     * @param $role
+     * @return mixed
+     */
+    function total($role);
 }

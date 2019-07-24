@@ -88,5 +88,12 @@ class TeacherRepo implements iTeacher
             ->update($data);
     }
 
+    function total($role)
+    {
+        return $this->teacher
+            ->where('roles', 'like', '%'.$role.'%')
+            ->count('tid');
+    }
+
 
 }

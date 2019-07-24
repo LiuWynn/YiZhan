@@ -103,6 +103,8 @@ Route::group([
     Route::post('site/conf', 'SiteController@getConf');
     // 修改站点配置信息
     Route::put('site/edit-conf', 'SiteController@editConf');
+    // 获取首页统计信息
+    Route::post('site/statistics', 'SiteController@getStatistics');
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
 });

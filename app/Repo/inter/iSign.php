@@ -32,4 +32,10 @@ interface iSign
      */
     function del($id);
 
+    /**
+     * 近 $day 时间报名数
+     * @param $day
+     * @return mixed
+     */
+    function total($day);
 }

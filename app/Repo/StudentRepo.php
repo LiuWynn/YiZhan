@@ -68,5 +68,11 @@ class StudentRepo implements iStudent
             ->delete();
     }
 
+    function total()
+    {
+        return $this->student
+            ->count('sid');
+    }
+
 
 }

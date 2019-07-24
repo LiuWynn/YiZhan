@@ -11,6 +11,7 @@ namespace App\Repo;
 
 use App\Model\Sign;
 use App\Repo\inter\iSign;
+use Illuminate\Support\Carbon;
 
 class SignRepo implements iSign
 {
@@ -41,7 +42,7 @@ class SignRepo implements iSign
                     $query->where('location', 'like', '%' . $keywords['location'] . '%');
             })
             ->select('sid', 'name', 'age', 'phone', 'qq',
-                'education', 'location', 'comment')
+                'education', 'location', 'comment', 'time')
             ->get();
     }
 
@@ -50,6 +51,16 @@ class SignRepo implements iSign
         return $this->sign
             ->where('sid', $id)
             ->delete();
+    }
+
+    function total($day)
+    {
+//        return Carbon::now()->timestamp;
+        return $this->sign
+            ->where('time', '>', Carbon::now()->subDay($day)->timestamp)
+            ->where('time', '<', Carbon::now()->timestamp)
+            ->count('sid');
+
     }
 
 

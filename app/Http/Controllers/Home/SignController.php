@@ -22,6 +22,7 @@ class SignController extends Controller
     public function create(Request $request)
     {
         $data = $request->all();
+        $data['time'] = time();
         if ($this->signRepo->insert($data))
             return $this->respond(true, array('message' => '添加成功'));
         else

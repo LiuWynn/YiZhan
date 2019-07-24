@@ -46,4 +46,10 @@ interface iStudent
      * @return mixed
      */
     function del($sid);
+
+    /**
+     * 统计学员总数
+     * @return mixed
+     */
+    function total();
 }
